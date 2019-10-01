@@ -25,14 +25,10 @@ class Inventory extends Component {
             </li>
           )
         })}</ul>
-        <h3>Shopping Cart</h3>
-        <ul>
-          {
-            this.props.cart.map(item => {
-              return <p key={item.product.name}>{item.product.name}, Qty: {item.qty}</p>
-            })
-          }
-        </ul>
+          <Link to = "/cart">SHOPPING CART </Link> 
+          {this.props.cart.reduce((total, item)=>{
+            return total += item.qty
+          }, 0)}
       </div>
     );
   }

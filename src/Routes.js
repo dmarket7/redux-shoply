@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from 'react-router-dom';
 import InventoryContainer from './containers/InventoryContainer'
 import ProductContainer from './containers/ProductContainer'
+import ShoppingCartContainer from './containers/ShoppingCartContainer'
 
 class Routes extends Component {
   render() {
@@ -10,7 +11,7 @@ class Routes extends Component {
         <Switch >
           <Route exact path='/' render={() => <InventoryContainer />} />
           <Route path='/products/:id' render={(props) => <ProductContainer {...props} />} />
-          {/* <Route path='/products/:id' render={(props) => <ShoppingCartContainer {...props} />} /> */}
+          <Route path='/cart' render={(props) => <ShoppingCartContainer {...props} />} />
 
         </Switch>
       </div>
