@@ -7,7 +7,7 @@ class Inventory extends Component {
       <div>
         <ul>{this.props.products.map(item => {
           return (
-            <li>
+            <li key={item.id}>
               <Link to={`products/${item.id}`}>{item.product.name}</Link>
               <button onClick={() => this.props.addToCart(item.id)}>Add to Cart</button>
               <button onClick={() => this.props.removeFromCart(item.id)}>Remove</button>
@@ -18,7 +18,7 @@ class Inventory extends Component {
         <ul>
           {
             this.props.cart.map(item => {
-              return <p>{item.product.name}, Qty: {item.qty}</p>
+              return <p key={item.product.name}>{item.product.name}, Qty: {item.qty}</p>
             })
           }
         </ul>
