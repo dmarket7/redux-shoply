@@ -6,7 +6,10 @@ class Routes extends Component {
   render() {
     return (
       <div>
-        <Route exact path='/' render={() => <InventoryContainer />} />
+        <Switch >
+          <Route exact path='/' render={() => <InventoryContainer />} />
+          
+        </Switch>
       </div>
     );
   }

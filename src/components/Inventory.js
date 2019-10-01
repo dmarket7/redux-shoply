@@ -1,18 +1,28 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
-// import Product from './Product'
+import { Link } from 'react-router-dom';
 
 class Inventory extends Component {
   render() {
-    console.log("Props:", this.props)
-    let displayArray = []
-    for (let key in this.props.products) {
-      displayArray.push(this.props.products[key])
-    }
     return (
-      <ul>{displayArray.map(item => {
-        return <li>{item.name}</li>
-      })}</ul>
+      <div>
+        <ul>{this.props.products.map(item => {
+          return (
+            <li>
+              <Link to={`products/${item.id}`}>{item.product.name}</Link>
+              <button onClick={() => this.props.addToCart(item.id)}>Add to Cart</button>
+              <button onClick={() => this.props.removeFromCart(item.id)}>Remove</button>
+            </li>
+          )
+        })}</ul>
+        <h3>Shopping Cart</h3>
+        <ul>
+          {
+            this.props.cart.map(item => {
+              return <p>{item.product.name}, Qty: {item.qty}</p>
+            })
+          }
+        </ul>
+      </div>
     );
   }
 }

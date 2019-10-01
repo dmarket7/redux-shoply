@@ -1,17 +1,29 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./actionTypes";
-import products from './data.json';
+import { products } from './data.json';
 
-const INITIAL_STATE = products;
+const INITIAL_STATE = { products, cart: {} };
 
 function rootReducer(state = INITIAL_STATE, action) {
   console.log("reducer ran; state & action:", state, action);
 
+  let currentQty;
+
   switch (action.type) {
     case ADD_TO_CART:
-      return { ...state };
+      currentQty = state.cart[action.id] || 0;
+      currentQty++;
+      return { ...state, cart: { ...state.cart, [action.id]: currentQty } };
 
     case REMOVE_FROM_CART:
-      return { ...state };
+      currentQty = state.cart[action.id];
+      currentQty--;
+      if (currentQty === 0) {
+        let currentState = { ...state };
+        delete currentState.cart[action.id];
+        return currentState;
+      } else {
+        return { ...state, cart: { ...state.cart, [action.id]: currentQty } };
+      }
 
     default:
       return state;
