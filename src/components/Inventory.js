@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import './Inventory.css'
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  ListGroup,
+  ListGroupItem,
+  Media
+} from 'reactstrap';
 
 class Inventory extends Component {
   render() {
+    console.log("PROPS IN INVEN", this.props)
     return (
-      <div>
+      <div className = "invenDiv">
         <ul>{this.props.products.map(item => {
           return (
             <li key={item.id}>

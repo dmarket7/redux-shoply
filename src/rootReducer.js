@@ -16,12 +16,16 @@ function rootReducer(state = INITIAL_STATE, action) {
 
     case REMOVE_FROM_CART:
       currentQty = state.cart[action.id];
-      currentQty--;
-      if (currentQty === 0) {
+      if (currentQty === 1) {
         let currentState = { ...state };
         delete currentState.cart[action.id];
         return currentState;
-      } else {
+      }
+      else if (!currentQty) {
+        return state;
+      }
+      else {
+        currentQty--;
         return { ...state, cart: { ...state.cart, [action.id]: currentQty } };
       }
 
