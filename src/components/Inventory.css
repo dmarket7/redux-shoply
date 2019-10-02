@@ -1,3 +1,11 @@
 .invenDiv {
     text-align: center;
+    background-color: white;
+    opacity: 0.8;
+    width: 25%;
+}
+
+.shopping-list {
+    opacity: 1;
+    color: white;
 }

@@ -16,7 +16,7 @@ class Inventory extends Component {
     console.log("PROPS IN INVEN", this.props)
     return (
       <div className = "invenDiv">
-        <ul>{this.props.products.map(item => {
+        <ul className="shopping-list">{this.props.products.map(item => {
           return (
             <li key={item.id}>
               <Link to={`products/${item.id}`}>{item.product.name}</Link>

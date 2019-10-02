@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import './ShoppingCart.css'
 
 class ShoppingCart extends Component {
   render() {
     console.log("props in cart", this.props)
     return (
-      <div>
+      <div className="shopping-cart">
         <h3>Shopping Cart</h3>
         <ul>
           {
@@ -16,8 +17,8 @@ class ShoppingCart extends Component {
           }
         </ul>
         <h3>Total cost: ${this.props.cart.reduce((total, item)=>{
-            return (total += (item.product.price * item.qty)).toFixed(2)
-          }, 0)}</h3>
+            return total + item.product.price * item.qty;
+          }, 0).toFixed(2)}</h3>
 
       </div>
     );

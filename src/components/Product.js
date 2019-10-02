@@ -13,35 +13,23 @@ import {
 
 class Product extends Component {
   render() {
-    console.log("props in product", this.props)
-    let id = this.props.match.params.id
-
-    let product = this.props.products.filter(product => {
-      return product.id === id
-    })
-
-    let productCartInfo = this.props.cart.filter(product => {
-      return product.id === id
-    })
-
     return (
       <div>
         <Card>
           <CardBody>
-            <CardTitle className="font-weight-bold text-center">
-              <h1>Product Name: {product[0].product.name}</h1>
+            <CardTitle className="font-weight-bold text-center product-text">
+              <h1>Product Name: {this.props.product[0].product.name}</h1>
             </CardTitle>
+            <CardText className="product-text">
+              Description: {this.props.product[0].product.description} <br />
+              Price: {this.props.product[0].product.price} <br />
+            </CardText>
+            <Media className="product-image" object src={this.props.product[0].product.image_url} alt="Generic placeholder image" />
+            {this.props.cart.length > 0 ?
+              <h3 className="product-cart">Current quantity in cart: {this.props.cart[0].qty}</h3> : null}
             <CardText>
-              Description: {product[0].product.description} <br />
-              Price: {product[0].product.price} <br />
-              <Media object src={product[0].product.image_url} alt="Generic placeholder image" />
-              <div>
-                <button onClick={() => this.props.addToCart(id)}>Add to Cart</button>
-                <button onClick={() => this.props.removeFromCart(id)}>Remove</button>
-                {productCartInfo.length > 0 ?
-                  <h3>Current quantity in cart: {productCartInfo[0].qty}</h3> : null}
-
-              </div>
+              <button onClick={() => this.props.addToCart(this.props.product[0].id)}>Add to Cart</button>
+              <button onClick={() => this.props.removeFromCart(this.props.product[0].id)}>Remove</button>
             </CardText>
           </CardBody>
         </Card>

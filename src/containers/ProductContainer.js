@@ -2,9 +2,8 @@ import { connect } from "react-redux";
 import { addToCart, removeFromCart } from "../actions";
 import Product from "../components/Product";
 
-function mapStateToProps(state, rtProp) {
-  console.log("something", rtProp);
-  console.log("props in prod container", this.props)
+function mapStateToProps(state, ownProps) {
+  console.log("something", ownProps);
 
   let productKeys = Object.keys(state.products);
   let newProducts = productKeys.map(key => {
@@ -16,9 +15,19 @@ function mapStateToProps(state, rtProp) {
     return { product: state.products[key], qty: state.cart[key], id: key }
   })
 
+  let findProduct = newProducts.filter(product => {
+    return product.id === ownProps.match.params.id
+  })
+
+  let productCartInfo = newCart.filter(product => {
+    return product.id === ownProps.match.params.id
+  })
+
   return {
-    products: newProducts,
-    cart: newCart
+    // products: newProducts,
+    // cart: newCart,
+    product: findProduct,
+    cart: productCartInfo
   };
 }
 

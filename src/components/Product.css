@@ -45,3 +45,17 @@
     box-shadow: inset 0 0 0 10px #ffffff;
     box-sizing: border-box;
 }
+
+.product-text{
+    color: #fff;
+}
+
+.product-image{
+    height: 300px;
+}
+
+.product-cart{
+    color: #fff;
+    background-color: #555;
+    opacity: 0.8;
+}
